@@ -1,0 +1,49 @@
+buildscript {
+  repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+  }
+
+  dependencies {
+    classpath "org.elasticsearch.gradle:build-tools:6.4.2"
+  }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'elasticsearch.esplugin'
+
+group = 'org.elasticsearch.plugin.ingest'
+version = "${versions.elasticsearch}-0.0.1-SNAPSHOT"
+
+licenseFile = rootProject.file('LICENSE')
+noticeFile = rootProject.file('NOTICE.txt')
+
+esplugin {
+  name 'ingest-geocoding'
+  description 'An ingest processor that uses Google\'s Geocoding API to geocode addresses'
+  classname 'com.corneti.elasticsearch.plugin.ingest.geocoding.IngestGeocodingPlugin'
+  licenseFile rootProject.file('LICENSE')
+  noticeFile rootProject.file('NOTICE.txt')
+}
+
+dependencies {
+  compile 'com.google.maps:google-maps-services:0.9.0'
+  compile 'com.squareup.okhttp3:okhttp:3.11.0'
+  compile 'com.squareup.okio:okio:1.14.0'
+  compile 'com.google.code.gson:gson:2.8.5'
+  compile "org.slf4j:slf4j-api:${versions.slf4j}"
+  compile "org.slf4j:slf4j-simple:${versions.slf4j}"
+}
+
+dependencyLicenses {
+  mapping from: /slf4j-.*/, to: 'slf4j'
+}
+
+checkstyleMain.enabled = true
+checkstyleTest.enabled = true
+
+dependencyLicenses.enabled = true
+thirdPartyAudit.enabled = false
+licenseHeaders.enabled = true
