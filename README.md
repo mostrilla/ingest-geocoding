@@ -1,5 +1,7 @@
 # Elasticsearch geocoding Ingest Processor - FOR RECREATIVE PURPOSES ONLY
 
+[![Build Status](https://travis-ci.org/fabiocorneti/ingest-geocoding.svg?branch=master)](https://travis-ci.org/fabiocorneti/ingest-geocoding)
+
 This is just an experiment to play with Elasticsearch ingest processors.
 
 ## Setup
